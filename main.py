@@ -9,47 +9,47 @@ from tkinter import *
 import numpy
 
 #Variables de jugadores
-jugador1 = False
-jugador2 = False
+jugador_1 = False
+jugador_2 = False
 ganaJ1 = False
 ganaJ2 = False
 usados = 0
 fin = False
 
 #Para controlar que solo se comience el juego una vez.
-juegoComenzado = False
+juego_Comenzado = False
 
 #Matriz para controlar que jugadores han colocado en que posicion
 matrix = numpy.zeros((4, 4))
 
-#Root global
-root = Tk()  # Ventana Raíz donde se dibuja todo
-canvas = Canvas(root, width=400, height=400)  # Inicialización del canvas
+#ventana global
+ventana = Tk()  # Ventana Raíz donde se dibuja todo
+canvas = Canvas(ventana, width=400, height=400)  # Inicialización del canvas
 #Label global para poder cambiarla con eventos.
 texto = StringVar()
 texto.set("Estado del juego: No Iniciado.")
-label = Label(root, textvariable=texto)
+label = Label(ventana, textvariable=texto)
 
 
 def comenzarPartida():
 
-    global juegoComenzado
-    global jugador1
-    global jugador2
+    global juego_Comenzado
+    global jugador_1
+    global jugador_2
     global texto
     global canvas
     global matrix
     global fin
     global usados
 
-    if juegoComenzado == False:
-        jugador1 = True
+    if juego_Comenzado == False:
+        jugador_1 = True
 
     #Reiniciamos la partida
-    elif juegoComenzado == True:
+    elif juego_Comenzado == True:
 
-        jugador1 = True
-        jugador2 = False
+        jugador_1 = True
+        jugador_2 = False
         canvas.delete("all")
         #Canvas donde se dibuja todo
         # Lineas que dibujan el tablero 4x4
@@ -66,7 +66,7 @@ def comenzarPartida():
         usados = 0
 
     texto.set("Estado del juego: Turno jugador 1.")
-    juegoComenzado = True
+    juego_Comenzado = True
 
 
 def getGanador():
@@ -116,15 +116,15 @@ def getGanador():
 def getPos(event):
 
     #Variables globales para controlar el jugador actual
-    global jugador1
-    global jugador2
+    global jugador_1
+    global jugador_2
     global ganaJ1
     global ganaJ2
     global texto
     global usados
     global fin
 
-    if jugador1 != False or jugador2 != False:
+    if jugador_1 != False or jugador_2 != False:
         #Coordenadas del canvas por pantalla
         #print("Coor:(",event.x,",",event.y,")")
         canvas = event.widget
@@ -136,7 +136,7 @@ def getPos(event):
     for i in range(0, 400, 100):
         for j in range(0, 400, 100):
             if event.x < i+100 and event.y < j+100 and event.x > i and event.y > j:
-                if jugador1:
+                if jugador_1:
                     #Comprobar que no hay nada pintado antes de pintar
                     tupla = canvas.find_enclosed(i, j, i+100, j+100)
                     if len(tupla) == 0:
@@ -144,14 +144,14 @@ def getPos(event):
                         if(fin == False):
                             canvas.create_oval(
                                 i+25, j+25, i+75, j+75, width=4, outline="#8258FA")  # Púrpura
-                            jugador1 = False
-                            jugador2 = True
+                            jugador_1 = False
+                            jugador_2 = True
                             texto.set("Estado del juego: Turno jugador 2.")
                             #Rellenamos la matrix para comprobar la victoria
                             matrix[i//100, j//100] = 1
                             usados += 1
 
-                elif jugador2:
+                elif jugador_2:
 
                     #Comprobar que no hay nada pintado antes de pintar
                     tupla = canvas.find_enclosed(i, j, i+100, j+100)
@@ -162,8 +162,8 @@ def getPos(event):
                                 i+30, j+30, i+70, j+70, width=4, fill="#58ACFA")  # Azul
                             canvas.create_line(
                                 i+30, j+70, i+70, j+30, width=4, fill="#58ACFA")
-                            jugador2 = False
-                            jugador1 = True
+                            jugador_2 = False
+                            jugador_1 = True
                             texto.set("Estado del juego: Turno jugador 1.")
                             #Rellenamos la matrix para comprobar la victoria
                             matrix[i//100, j//100] = 2
@@ -184,11 +184,11 @@ def getPos(event):
 
 
 def main():
-    global root
+    global ventana
 
-    root.title("Cuatro en Raya")  # Título de la ventana
-    root.geometry("400x530")  # Tamaño de la ventana
-    root.resizable(width=FALSE, height=FALSE)  # Tamaño de la ventana fijo
+    ventana.title("Cuatro en Raya")  # Título de la ventana
+    ventana.geometry("400x530")  # Tamaño de la ventana
+    ventana.resizable(width=FALSE, height=FALSE)  # Tamaño de la ventana fijo
 
     #Canvas donde se dibuja todo
     canvas.create_line(0, 100, 400, 100)  # Lineas que dibujan el tablero 4x4
@@ -210,14 +210,14 @@ def main():
     label.config(bg="#58ACFA")  # Azul
 
     #Boton de jugar
-    boton = Button(root, text="Click aquí para comenzar la partida",
+    boton = Button(ventana, text="Click aquí para comenzar la partida",
                    command=comenzarPartida)
     boton.grid(row=2, column=0)
     boton.config(height=4, width=55)
     boton.config(bg="#8258FA")  # Púrpura
 
     #Se mete el programa en un loop que espera eventos programados anteriormente.
-    root.mainloop()
+    ventana.mainloop()
 
 
 main()
