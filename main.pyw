@@ -1,18 +1,18 @@
 """
 juego desarrollado en python
 usando modulos simples como tkinter y numpy
-juego desarrollado por Jansel Roa reyes
-
+juego desarrollado por Jansel Roa reyes  xd
 """
 
 from tkinter import *
 import numpy
 
+
 #Variables de jugadores
 jugador_1 = False
 jugador_2 = False
-ganaJ1 = False
-ganaJ2 = False
+gana_J1 = False
+gana_J2 = False
 usados = 0
 fin = False
 
@@ -31,7 +31,7 @@ texto.set("Estado del juego: No Iniciado.")
 label = Label(ventana, textvariable=texto)
 
 
-def comenzarPartida():
+def comenzar_Partida():
 
     global juego_Comenzado
     global jugador_1
@@ -118,8 +118,8 @@ def getPos(event):
     #Variables globales para controlar el jugador actual
     global jugador_1
     global jugador_2
-    global ganaJ1
-    global ganaJ2
+    global gana_J1
+    global gana_J2
     global texto
     global usados
     global fin
@@ -172,11 +172,11 @@ def getPos(event):
     print(matrix)
     if getGanador() == 1:
         texto.set("¡Gana el jugador 1!")
-        ganaJ1 = False
+        gana_J1 = False
         fin = True
     elif getGanador() == 2:
         texto.set("¡Gana el jugador 2!")
-        ganaJ2 = False
+        gana_J2 = False
         fin = True
     elif usados == 16:
         texto.set("¡EMPATE!")
@@ -188,7 +188,8 @@ def main():
 
     ventana.title("Cuatro en Raya")  # Título de la ventana
     ventana.geometry("400x530")  # Tamaño de la ventana
-    ventana.resizable(width=FALSE, height=FALSE)  # Tamaño de la ventana fijo
+    ventana.resizable(width=False, height=False)
+    ventana.iconbitmap("Juego.ico")  # Tamaño de la ventana fijo
 
     #Canvas donde se dibuja todo
     canvas.create_line(0, 100, 400, 100)  # Lineas que dibujan el tablero 4x4
@@ -211,7 +212,7 @@ def main():
 
     #Boton de jugar
     boton = Button(ventana, text="Click aquí para comenzar la partida",
-                   command=comenzarPartida)
+                   command=comenzar_Partida)
     boton.grid(row=2, column=0)
     boton.config(height=4, width=55)
     boton.config(bg="#8258FA")  # Púrpura
