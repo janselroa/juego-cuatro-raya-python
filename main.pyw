@@ -9,8 +9,8 @@ import numpy
 
 
 #Variables de jugadores
-jugador_1 = False
-jugador_2 = False
+jugador1 = False
+jugador2 = False
 gana_J1 = False
 gana_J2 = False
 usados = 0
@@ -34,8 +34,8 @@ label = Label(ventana, textvariable=texto)
 def comenzar_Partida():
 
     global juego_Comenzado
-    global jugador_1
-    global jugador_2
+    global jugador1
+    global jugador2
     global texto
     global canvas
     global matrix
@@ -43,13 +43,13 @@ def comenzar_Partida():
     global usados
 
     if juego_Comenzado == False:
-        jugador_1 = True
+        jugador1 = True
 
     #Reiniciamos la partida
     elif juego_Comenzado == True:
 
-        jugador_1 = True
-        jugador_2 = False
+        jugador1 = True
+        jugador2 = False
         canvas.delete("all")
         #Canvas donde se dibuja todo
         # Lineas que dibujan el tablero 4x4
@@ -116,15 +116,15 @@ def getGanador():
 def getPos(event):
 
     #Variables globales para controlar el jugador actual
-    global jugador_1
-    global jugador_2
+    global jugador1
+    global jugador2
     global gana_J1
     global gana_J2
     global texto
     global usados
     global fin
 
-    if jugador_1 != False or jugador_2 != False:
+    if jugador1 != False or jugador2 != False:
         #Coordenadas del canvas por pantalla
         #print("Coor:(",event.x,",",event.y,")")
         canvas = event.widget
@@ -136,7 +136,7 @@ def getPos(event):
     for i in range(0, 400, 100):
         for j in range(0, 400, 100):
             if event.x < i+100 and event.y < j+100 and event.x > i and event.y > j:
-                if jugador_1:
+                if jugador1:
                     #Comprobar que no hay nada pintado antes de pintar
                     tupla = canvas.find_enclosed(i, j, i+100, j+100)
                     if len(tupla) == 0:
@@ -144,14 +144,14 @@ def getPos(event):
                         if(fin == False):
                             canvas.create_oval(
                                 i+25, j+25, i+75, j+75, width=4, outline="#8258FA")  # Púrpura
-                            jugador_1 = False
-                            jugador_2 = True
+                            jugador1 = False
+                            jugador2 = True
                             texto.set("Estado del juego: Turno jugador 2.")
                             #Rellenamos la matrix para comprobar la victoria
                             matrix[i//100, j//100] = 1
                             usados += 1
 
-                elif jugador_2:
+                elif jugador2:
 
                     #Comprobar que no hay nada pintado antes de pintar
                     tupla = canvas.find_enclosed(i, j, i+100, j+100)
@@ -162,8 +162,8 @@ def getPos(event):
                                 i+30, j+30, i+70, j+70, width=4, fill="#58ACFA")  # Azul
                             canvas.create_line(
                                 i+30, j+70, i+70, j+30, width=4, fill="#58ACFA")
-                            jugador_2 = False
-                            jugador_1 = True
+                            jugador2 = False
+                            jugador1 = True
                             texto.set("Estado del juego: Turno jugador 1.")
                             #Rellenamos la matrix para comprobar la victoria
                             matrix[i//100, j//100] = 2
