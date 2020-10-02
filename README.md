@@ -19,7 +19,7 @@ Para desarrollar este juego, he utilizado diferentes paquetes de Python. Estos s
 
 ### Ejemplo del juego
 <p align="center">
-  <a href="https://github.com/janselroa/juego-de-cuatro-en-raya-con-python/blob/master/main.pyw">
+  <a href="https://github.com/janselroa/juego-de-cuatro-en-raya-con-python/blob/master/main.py">
     <img src="https://media.discordapp.net/attachments/756565708598673561/757611034428309544/unknown.png?width=339&height=474" alt="...">
   </a>
 </p>
@@ -37,11 +37,11 @@ cd juego-de-cuatro-en-raya-con-python
 ```
 ###### Iniciamos el juego utilizando el interprete de python
 ```shell
-python main.pyw
+python main.py
 ```
 ###### En caso de tener multiples instalaciones de Python, lo iniciaremos con Python 3
 ```shell
-python main.pyw
+python main.py
 ```
 ###### En caso de recibir algun tipo de error sigue los siguientes pasos 
 * Comprueba que has escrito bien los comandos
