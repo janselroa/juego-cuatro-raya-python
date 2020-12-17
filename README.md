@@ -25,12 +25,16 @@ Para desarrollar este juego, he utilizado diferentes paquetes de Python. Estos s
 </p>
 Podemos ver como la interfaz de usuario simula una cuadricula de 4·4, para representar el tablero de un juego de cuatro en raya. Como podemos ver la paleta de colores del juego está basada entorno a tonos fríos.
 
-### Como jugar
-Si quieres jugar a este juego primero debes de clonarlo utilizando [Git](https://git-scm.com/). Si no tienes Git instalado, instalalo desde [su página de descargargas](https://git-scm.com/downloads).
-###### Clonamos el juego utilizando el comando `git clone`
+### Descarga
+#### Git
 ```shell
 git clone https://github.com/janselroa/juego-de-cuatro-en-raya-con-python.git
 ```
+#### github cli
+````shell
+gh repo clone janselroa/juego-cuatro-raya-python
+````
+### Uso
 ###### Nos trasladamos dentro del directorio del juego utilizando el comando `cd` 
 ```shell
 cd juego-de-cuatro-en-raya-con-python
